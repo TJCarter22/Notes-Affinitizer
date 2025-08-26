@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Notes Insight Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .user-input {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .user-input label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+
+        .user-input input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .user-input textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .add-user-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .add-user-btn:hover {
+            background: #2980b9;
+        }
+
+        .analyze-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .analyze-btn:hover {
+            background: #229954;
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background: #c0392b;
+        }
+
+        .results-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .insight {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+            position: relative;
+        }
+
+        .insight-high {
+            background: #d5f4e6;
+            border-left-color: #27ae60;
+        }
+
+        .insight-medium {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .insight-low {
+            background: #f8d7da;
+            border-left-color: #e74c3c;
+        }
+
+        .insight-text {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .insight-users {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .confidence-badge {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .confidence-high { background: #27ae60; }
+        .confidence-medium { background: #f39c12; }
+        .confidence-low { background: #e74c3c; }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 User Notes Insight Analyzer</h1>
+        
+        <div class="input-section">
+            <h2>Add User Notes</h2>
+            <div id="userInputs">
+                <div class="user-input">
+                    <label>User Name:</label>
+                    <input type="text" class="user-name" placeholder="Enter user name">
+                    <label>Notes:</label>
+                    <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button class="add-user-btn" onclick="addUserInput()">+ Add Another User</button>
+                <button class="analyze-btn" onclick="analyzeNotes()">🔍 Analyze Insights</button>
+                <button class="clear-btn" onclick="clearAll()">🗑️ Clear All</button>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h2>📊 Research Insights</h2>
+            <div id="results">
+                <div class="no-results">
+                    Add user notes above and click "Analyze Insights" to see patterns and findings.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class InsightAnalyzer {
+            constructor() {
+                this.keywords = {
+                    positive: ['helpful', 'useful', 'good', 'great', 'excellent', 'love', 'like', 'easy', 'simple', 'clear', 'intuitive', 'works well', 'satisfied', 'pleased'],
+                    negative: ['difficult', 'hard', 'confusing', 'complicated', 'hate', 'dislike', 'broken', 'bad', 'terrible', 'frustrating', 'annoying', 'slow', 'buggy'],
+                    features: ['feature', 'function', 'tool', 'button', 'menu', 'interface', 'design', 'layout', 'navigation', 'search', 'filter', 'dashboard', 'report'],
+                    usability: ['user-friendly', 'usable', 'accessible', 'responsive', 'fast', 'loading', 'performance', 'speed', 'mobile', 'desktop']
+                };
+            }
+
+            extractInsights(userNotes) {
+                const insights = new Map();
+                const totalUsers = userNotes.length;
+
+                // Process each user's notes
+                userNotes.forEach(user => {
+                    const notes = user.notes.toLowerCase();
+                    const sentences = notes.split(/[.!?]+/).filter(s => s.trim().length > 0);
+
+                    sentences.forEach(sentence => {
+                        const cleanSentence = sentence.trim();
+                        if (cleanSentence.length < 10) return; // Skip very short sentences
+
+                        // Extract key phrases and themes
+                        const themes = this.identifyThemes(cleanSentence);
+                        const sentiment = this.analyzeSentiment(cleanSentence);
+                        
+                        themes.forEach(theme => {
+                            const key = `${theme}_${sentiment}`;
+                            if (!insights.has(key)) {
+                                insights.set(key, {
+                                    text: this.generateInsightText(theme, sentiment),
+                                    users: new Set(),
+                                    examples: []
+                                });
+                            }
+                            
+                            insights.get(key).users.add(user.name);
+                            insights.get(key).examples.push({
+                                user: user.name,
+                                quote: cleanSentence
+                            });
+                        });
+                    });
+                });
+
+                // Convert to array and add confidence levels
+                return Array.from(insights.values()).map(insight => ({
+                    ...insight,
+                    userCount: insight.users.size,
+                    confidence: this.calculateConfidence(insight.users.size, totalUsers),
+                    users: Array.from(insight.users)
+                })).filter(insight => insight.userCount > 0)
+                .sort((a, b) => b.userCount - a.userCount);
+            }
+
+            identifyThemes(sentence) {
+                const themes = [];
+                
+                // Check for specific features or UI elements
+                if (this.containsKeywords(sentence, this.keywords.features)) {
+                    themes.push('feature usage');
+                }
+                
+                // Check for usability mentions
+                if (this.containsKeywords(sentence, this.keywords.usability)) {
+                    themes.push('usability');
+                }
+                
+                // Check for general experience
+                if (this.containsKeywords(sentence, [...this.keywords.positive, ...this.keywords.negative])) {
+                    themes.push('user experience');
+                }
+
+                // Default theme if no specific theme found
+                if (themes.length === 0) {
+                    themes.push('general feedback');
+                }
+
+                return themes;
+            }
+
+            analyzeSentiment(sentence) {
+                const positiveCount = this.countKeywords(sentence, this.keywords.positive);
+                const negativeCount = this.countKeywords(sentence, this.keywords.negative);
+                
+                if (positiveCount > negativeCount) return 'positive';
+                if (negativeCount > positiveCount) return 'negative';
+                return 'neutral';
+            }
+
+            containsKeywords(text, keywords) {
+                return keywords.some(keyword => text.includes(keyword));
+            }
+
+            countKeywords(text, keywords) {
+                return keywords.reduce((count, keyword) => {
+                    return count + (text.split(keyword).length - 1);
+                }, 0);
+            }
+
+            generateInsightText(theme, sentiment) {
+                const sentimentText = sentiment === 'positive' ? 'found helpful' : 
+                                   sentiment === 'negative' ? 'found problematic' : 'mentioned';
+                
+                return `Users ${sentimentText} aspects related to ${theme}`;
+            }
+
+            calculateConfidence(userCount, totalUsers) {
+                const percentage = (userCount / totalUsers) * 100;
+                if (percentage >= 66) return 'high';
+                if (percentage >= 33) return 'medium';
+                return 'low';
+            }
+        }
+
+        const analyzer = new InsightAnalyzer();
+
+        function addUserInput() {
+            const container = document.getElementById('userInputs');
+            const newInput = document.createElement('div');
+            newInput.className = 'user-input';
+            newInput.innerHTML = `
+                <label>User Name:</label>
+                <input type="text" class="user-name" placeholder="Enter user name">
+                <label>Notes:</label>
+                <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
+            `;
+            container.appendChild(newInput);
+        }
+
+        function analyzeNotes() {
+            const userInputs = document.querySelectorAll('.user-input');
+            const userNotes = [];
+
+            userInputs.forEach(input => {
+                const name = input.querySelector('.user-name').value.trim();
+                const notes = input.querySelector('.user-notes').value.trim();
+                
+                if (name && notes) {
+                    userNotes.push({ name, notes });
+                }
+            });
+
+            if (userNotes.length === 0) {
+                alert('Please add at least one user with notes before analyzing.');
+                return;
+            }
+
+            const insights = analyzer.extractInsights(userNotes);
+            displayResults(insights, userNotes.length);
+        }
+
+        function displayResults(insights, totalUsers) {
+            const resultsDiv = document.getElementById('results');
+            
+            if (insights.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">No significant patterns found in the provided notes.</div>';
+                return;
+            }
+
+            let html = `
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #27ae60;"></div>
+                        <span>High Confidence (66%+ users)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f39c12;"></div>
+                        <span>Medium Confidence (33-65% users)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #e74c3c;"></div>
+                        <span>Low Confidence (<33% users)</span>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalUsers}</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${insights.length}</div>
+                        <div class="stat-label">Insights Found</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${insights.filter(i => i.confidence === 'high').length}</div>
+                        <div class="stat-label">High Confidence</div>
+                    </div>
+                </div>
+            `;
+
+            insights.forEach(insight => {
+                const confidenceClass = `insight-${insight.confidence}`;
+                const badgeClass = `confidence-${insight.confidence}`;
+                
+                html += `
+                    <div class="insight ${confidenceClass}">
+                        <div class="confidence-badge ${badgeClass}">
+                            ${insight.userCount}/${totalUsers} users
+                        </div>
+                        <div class="insight-text">${insight.text}</div>
+                        <div class="insight-users">
+                            Mentioned by: ${insight.users.join(', ')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+
+        function clearAll() {
+            document.getElementById('userInputs').innerHTML = `
+                <div class="user-input">
+                    <label>User Name:</label>
+                    <input type="text" class="user-name" placeholder="Enter user name">
+                    <label>Notes:</label>
+                    <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
+                </div>
+            `;
+            
+            document.getElementById('results').innerHTML = `
+                <div class="no-results">
+                    Add user notes above and click "Analyze Insights" to see patterns and findings.
+                </div>
+            `;
+        }
+
+        // Add some sample data for demonstration
+        function loadSampleData() {
+            const sampleData = [
+                {
+                    name: "Sarah",
+                    notes: "The search feature is really helpful and easy to use. I love how fast it loads results. The dashboard design is clean and intuitive."
+                },
+                {
+                    name: "Mike", 
+                    notes: "Search functionality works well for me too. The interface is user-friendly. However, the mobile version is a bit slow sometimes."
+                },
+                {
+                    name: "Jessica",
+                    notes: "I find the navigation confusing at first, but the search tool is excellent. The reporting feature is very useful for my work."
+                }
+            ];
+
+            const container = document.getElementById('userInputs');
+            container.innerHTML = '';
+            
+            sampleData.forEach(user => {
+                const newInput = document.createElement('div');
+                newInput.className = 'user-input';
+                newInput.innerHTML = `
+                    <label>User Name:</label>
+                    <input type="text" class="user-name" value="${user.name}">
+                    <label>Notes:</label>
+                    <textarea class="user-notes">${user.notes}</textarea>
+                `;
+                container.appendChild(newInput);
+            });
+        }
+
+        // Uncomment the line below to load sample data on page load
+        // loadSampleData();
+    </script>
+</body>
+</html>
