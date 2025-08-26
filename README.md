@@ -31,3 +31,4 @@ A simple tool to analyze user feedback and extract key research insights.
 - Product feedback review
 
 ## Live Demo
+try it here [https://tjcarter22.github.io/Notes-Affinitizer/]
