@@ -12,7 +12,7 @@ A simple tool to analyze user feedback and extract key research insights.
 
 ## How to Use
 
-1. Visit: https://yourusername.github.io/user-notes-analyzer
+1. Visit: https://tjcarter22.github.io/Notes-Affinitizer/
 2. Add user names and their feedback notes
 3. Click "Analyze Insights" to see patterns
 4. Review color-coded findings with user validation counts
