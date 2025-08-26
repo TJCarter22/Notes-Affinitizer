@@ -19,7 +19,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -38,41 +38,164 @@
         }
 
         .user-input {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid #e3f2fd;
+            border-radius: 12px;
+            background: #fafbfc;
+            position: relative;
+        }
+
+        .user-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: #f9f9f9;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .user-input label {
-            display: block;
+        .user-name-input {
+            font-size: 1.1em;
             font-weight: bold;
-            margin-bottom: 8px;
-            color: #34495e;
-        }
-
-        .user-input input {
-            width: 100%;
             padding: 8px 12px;
             border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            min-width: 200px;
+        }
+
+        .remove-user-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
             border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .remove-user-btn:hover {
+            background: #c0392b;
+        }
+
+        .sections-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 10px;
         }
 
-        .user-input textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+        .section-title {
+            font-weight: bold;
+            padding: 4px 8px;
+            border: 1px solid transparent;
             border-radius: 4px;
-            min-height: 100px;
-            resize: vertical;
+            background: transparent;
+            cursor: text;
+            min-width: 120px;
         }
 
-        .buttons {
+        .section-title:hover {
+            border-color: #ddd;
+            background: #f9f9f9;
+        }
+
+        .section-title:focus {
+            outline: none;
+            border-color: #3498db;
+            background: white;
+        }
+
+        .remove-section-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .bullet-points {
+            min-height: 100px;
+        }
+
+        .bullet-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 8px;
+        }
+
+        .bullet-point::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .bullet-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 4px;
+            border-radius: 3px;
+            resize: none;
+            min-height: 20px;
+            line-height: 1.4;
+        }
+
+        .bullet-input:hover {
+            background: #f9f9f9;
+        }
+
+        .bullet-input:focus {
+            outline: 1px solid #3498db;
+            background: white;
+        }
+
+        .bullet-input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        .add-section-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .add-section-btn:hover {
+            background: #2980b9;
+        }
+
+        .main-buttons {
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         button {
@@ -85,21 +208,21 @@
         }
 
         .add-user-btn {
-            background: #3498db;
-            color: white;
-        }
-
-        .add-user-btn:hover {
-            background: #2980b9;
-        }
-
-        .analyze-btn {
             background: #27ae60;
             color: white;
         }
 
-        .analyze-btn:hover {
+        .add-user-btn:hover {
             background: #229954;
+        }
+
+        .analyze-btn {
+            background: #8e44ad;
+            color: white;
+        }
+
+        .analyze-btn:hover {
+            background: #7d3c98;
         }
 
         .clear-btn {
@@ -116,6 +239,24 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .insights-by-section {
+            margin-bottom: 30px;
+        }
+
+        .section-insights {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-insights h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
         }
 
         .insight {
@@ -152,6 +293,14 @@
             font-style: italic;
         }
 
+        .insight-examples {
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
         .confidence-badge {
             position: absolute;
             top: 10px;
@@ -174,6 +323,7 @@
             padding: 15px;
             background: #f8f9fa;
             border-radius: 8px;
+            flex-wrap: wrap;
         }
 
         .legend-item {
@@ -219,6 +369,42 @@
             color: #666;
             font-size: 0.9em;
         }
+
+        .template-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .template-btn {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .template-btn:hover {
+            background: #138496;
+        }
+
+        @media (max-width: 768px) {
+            .sections-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-buttons {
+                flex-direction: column;
+            }
+            
+            .legend {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -227,17 +413,20 @@
         
         <div class="input-section">
             <h2>Add User Notes</h2>
-            <div id="userInputs">
-                <div class="user-input">
-                    <label>User Name:</label>
-                    <input type="text" class="user-name" placeholder="Enter user name">
-                    <label>Notes:</label>
-                    <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
-                </div>
+            
+            <div class="template-buttons">
+                <button class="template-btn" onclick="loadUXTemplate()">📱 UX Research Template</button>
+                <button class="template-btn" onclick="loadInterviewTemplate()">🎤 Interview Template</button>
+                <button class="template-btn" onclick="loadFeedbackTemplate()">💬 Feedback Template</button>
+                <button class="template-btn" onclick="loadCustomTemplate()">⚙️ Custom Template</button>
             </div>
             
-            <div class="buttons">
-                <button class="add-user-btn" onclick="addUserInput()">+ Add Another User</button>
+            <div id="userInputs">
+                <!-- Users will be added here -->
+            </div>
+            
+            <div class="main-buttons">
+                <button class="add-user-btn" onclick="addUser()">+ Add User</button>
                 <button class="analyze-btn" onclick="analyzeNotes()">🔍 Analyze Insights</button>
                 <button class="clear-btn" onclick="clearAll()">🗑️ Clear All</button>
             </div>
@@ -247,88 +436,92 @@
             <h2>📊 Research Insights</h2>
             <div id="results">
                 <div class="no-results">
-                    Add user notes above and click "Analyze Insights" to see patterns and findings.
+                    Add user notes above and click "Analyze Insights" to see patterns and findings organized by section.
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        class InsightAnalyzer {
+        class SectionedInsightAnalyzer {
             constructor() {
                 this.keywords = {
-                    positive: ['helpful', 'useful', 'good', 'great', 'excellent', 'love', 'like', 'easy', 'simple', 'clear', 'intuitive', 'works well', 'satisfied', 'pleased'],
-                    negative: ['difficult', 'hard', 'confusing', 'complicated', 'hate', 'dislike', 'broken', 'bad', 'terrible', 'frustrating', 'annoying', 'slow', 'buggy'],
-                    features: ['feature', 'function', 'tool', 'button', 'menu', 'interface', 'design', 'layout', 'navigation', 'search', 'filter', 'dashboard', 'report'],
-                    usability: ['user-friendly', 'usable', 'accessible', 'responsive', 'fast', 'loading', 'performance', 'speed', 'mobile', 'desktop']
+                    positive: ['helpful', 'useful', 'good', 'great', 'excellent', 'love', 'like', 'easy', 'simple', 'clear', 'intuitive', 'works well', 'satisfied', 'pleased', 'smooth', 'fast', 'efficient'],
+                    negative: ['difficult', 'hard', 'confusing', 'complicated', 'hate', 'dislike', 'broken', 'bad', 'terrible', 'frustrating', 'annoying', 'slow', 'buggy', 'unclear', 'messy', 'clunky'],
+                    features: ['feature', 'function', 'tool', 'button', 'menu', 'interface', 'design', 'layout', 'navigation', 'search', 'filter', 'dashboard', 'report', 'form', 'page'],
+                    usability: ['user-friendly', 'usable', 'accessible', 'responsive', 'loading', 'performance', 'speed', 'mobile', 'desktop', 'workflow', 'process']
                 };
             }
 
-            extractInsights(userNotes) {
-                const insights = new Map();
-                const totalUsers = userNotes.length;
+            extractInsightsBySection(userData) {
+                const sectionInsights = {};
+                const totalUsers = userData.length;
 
-                // Process each user's notes
-                userNotes.forEach(user => {
-                    const notes = user.notes.toLowerCase();
-                    const sentences = notes.split(/[.!?]+/).filter(s => s.trim().length > 0);
+                userData.forEach(user => {
+                    Object.keys(user.sections).forEach(sectionName => {
+                        if (!sectionInsights[sectionName]) {
+                            sectionInsights[sectionName] = new Map();
+                        }
 
-                    sentences.forEach(sentence => {
-                        const cleanSentence = sentence.trim();
-                        if (cleanSentence.length < 10) return; // Skip very short sentences
+                        const bulletPoints = user.sections[sectionName];
+                        bulletPoints.forEach(point => {
+                            if (point.trim().length < 5) return;
 
-                        // Extract key phrases and themes
-                        const themes = this.identifyThemes(cleanSentence);
-                        const sentiment = this.analyzeSentiment(cleanSentence);
-                        
-                        themes.forEach(theme => {
-                            const key = `${theme}_${sentiment}`;
-                            if (!insights.has(key)) {
-                                insights.set(key, {
-                                    text: this.generateInsightText(theme, sentiment),
-                                    users: new Set(),
-                                    examples: []
-                                });
-                            }
+                            const themes = this.identifyThemes(point.toLowerCase());
+                            const sentiment = this.analyzeSentiment(point.toLowerCase());
                             
-                            insights.get(key).users.add(user.name);
-                            insights.get(key).examples.push({
-                                user: user.name,
-                                quote: cleanSentence
+                            themes.forEach(theme => {
+                                const key = `${theme}_${sentiment}`;
+                                if (!sectionInsights[sectionName].has(key)) {
+                                    sectionInsights[sectionName].set(key, {
+                                        text: this.generateInsightText(theme, sentiment),
+                                        users: new Set(),
+                                        examples: []
+                                    });
+                                }
+                                
+                                sectionInsights[sectionName].get(key).users.add(user.name);
+                                sectionInsights[sectionName].get(key).examples.push({
+                                    user: user.name,
+                                    quote: point.trim()
+                                });
                             });
                         });
                     });
                 });
 
-                // Convert to array and add confidence levels
-                return Array.from(insights.values()).map(insight => ({
-                    ...insight,
-                    userCount: insight.users.size,
-                    confidence: this.calculateConfidence(insight.users.size, totalUsers),
-                    users: Array.from(insight.users)
-                })).filter(insight => insight.userCount > 0)
-                .sort((a, b) => b.userCount - a.userCount);
+                // Convert to final format
+                const result = {};
+                Object.keys(sectionInsights).forEach(sectionName => {
+                    result[sectionName] = Array.from(sectionInsights[sectionName].values())
+                        .map(insight => ({
+                            ...insight,
+                            userCount: insight.users.size,
+                            confidence: this.calculateConfidence(insight.users.size, totalUsers),
+                            users: Array.from(insight.users)
+                        }))
+                        .filter(insight => insight.userCount > 0)
+                        .sort((a, b) => b.userCount - a.userCount);
+                });
+
+                return result;
             }
 
-            identifyThemes(sentence) {
+            identifyThemes(text) {
                 const themes = [];
                 
-                // Check for specific features or UI elements
-                if (this.containsKeywords(sentence, this.keywords.features)) {
+                if (this.containsKeywords(text, this.keywords.features)) {
                     themes.push('feature usage');
                 }
                 
-                // Check for usability mentions
-                if (this.containsKeywords(sentence, this.keywords.usability)) {
+                if (this.containsKeywords(text, this.keywords.usability)) {
                     themes.push('usability');
                 }
                 
-                // Check for general experience
-                if (this.containsKeywords(sentence, [...this.keywords.positive, ...this.keywords.negative])) {
+                if (this.containsKeywords(text, [...this.keywords.positive, ...this.keywords.negative])) {
                     themes.push('user experience');
                 }
 
-                // Default theme if no specific theme found
                 if (themes.length === 0) {
                     themes.push('general feedback');
                 }
@@ -336,9 +529,9 @@
                 return themes;
             }
 
-            analyzeSentiment(sentence) {
-                const positiveCount = this.countKeywords(sentence, this.keywords.positive);
-                const negativeCount = this.countKeywords(sentence, this.keywords.negative);
+            analyzeSentiment(text) {
+                const positiveCount = this.countKeywords(text, this.keywords.positive);
+                const negativeCount = this.countKeywords(text, this.keywords.negative);
                 
                 if (positiveCount > negativeCount) return 'positive';
                 if (negativeCount > positiveCount) return 'negative';
@@ -370,47 +563,162 @@
             }
         }
 
-        const analyzer = new InsightAnalyzer();
+        const analyzer = new SectionedInsightAnalyzer();
+        let userCounter = 0;
 
-        function addUserInput() {
+        function addUser(template = null) {
+            userCounter++;
             const container = document.getElementById('userInputs');
-            const newInput = document.createElement('div');
-            newInput.className = 'user-input';
-            newInput.innerHTML = `
-                <label>User Name:</label>
-                <input type="text" class="user-name" placeholder="Enter user name">
-                <label>Notes:</label>
-                <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
+            const userDiv = document.createElement('div');
+            userDiv.className = 'user-input';
+            userDiv.dataset.userId = userCounter;
+
+            const defaultSections = template || {
+                'General Feedback': [''],
+                'Likes': [''],
+                'Dislikes': ['']
+            };
+
+            let sectionsHtml = '';
+            Object.keys(defaultSections).forEach(sectionName => {
+                sectionsHtml += createSectionHtml(sectionName, defaultSections[sectionName]);
+            });
+
+            userDiv.innerHTML = `
+                <div class="user-header">
+                    <input type="text" class="user-name-input" placeholder="Enter user name" value="User ${userCounter}">
+                    <button class="remove-user-btn" onclick="removeUser(${userCounter})">Remove User</button>
+                </div>
+                <div class="sections-container">
+                    ${sectionsHtml}
+                </div>
+                <button class="add-section-btn" onclick="addSection(${userCounter})">+ Add Section</button>
             `;
-            container.appendChild(newInput);
+
+            container.appendChild(userDiv);
+            setupEventListeners(userDiv);
         }
 
-        function analyzeNotes() {
-            const userInputs = document.querySelectorAll('.user-input');
-            const userNotes = [];
+        function createSectionHtml(sectionName, bulletPoints = ['']) {
+            const bulletPointsHtml = bulletPoints.map(point => 
+                `<div class="bullet-point">
+                    <textarea class="bullet-input" placeholder="Add a bullet point..." rows="1">${point}</textarea>
+                </div>`
+            ).join('');
 
-            userInputs.forEach(input => {
-                const name = input.querySelector('.user-name').value.trim();
-                const notes = input.querySelector('.user-notes').value.trim();
-                
-                if (name && notes) {
-                    userNotes.push({ name, notes });
+            return `
+                <div class="section">
+                    <div class="section-header">
+                        <input type="text" class="section-title" value="${sectionName}" placeholder="Section name">
+                        <button class="remove-section-btn" onclick="removeSection(this)">×</button>
+                    </div>
+                    <div class="bullet-points">
+                        ${bulletPointsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function setupEventListeners(userDiv) {
+            // Auto-resize textareas
+            userDiv.querySelectorAll('.bullet-input').forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = this.scrollHeight + 'px';
+                    
+                    // Add new bullet point if this is the last one and has content
+                    const bulletPoints = this.closest('.bullet-points');
+                    const allInputs = bulletPoints.querySelectorAll('.bullet-input');
+                    const isLast = this === allInputs[allInputs.length - 1];
+                    
+                    if (isLast && this.value.trim()) {
+                        addBulletPoint(bulletPoints);
+                    }
+                });
+            });
+        }
+
+        function addBulletPoint(container) {
+            const bulletDiv = document.createElement('div');
+            bulletDiv.className = 'bullet-point';
+            bulletDiv.innerHTML = '<textarea class="bullet-input" placeholder="Add a bullet point..." rows="1"></textarea>';
+            container.appendChild(bulletDiv);
+            
+            const newTextarea = bulletDiv.querySelector('.bullet-input');
+            setupEventListeners(bulletDiv.closest('.user-input'));
+            newTextarea.focus();
+        }
+
+        function addSection(userId) {
+            const userDiv = document.querySelector(`[data-user-id="${userId}"]`);
+            const sectionsContainer = userDiv.querySelector('.sections-container');
+            
+            const sectionDiv = document.createElement('div');
+            sectionDiv.innerHTML = createSectionHtml('New Section');
+            sectionsContainer.appendChild(sectionDiv.firstElementChild);
+            
+            setupEventListeners(userDiv);
+        }
+
+        function removeUser(userId) {
+            const userDiv = document.querySelector(`[data-user-id="${userId}"]`);
+            userDiv.remove();
+        }
+
+        function removeSection(button) {
+            button.closest('.section').remove();
+        }
+
+        function collectUserData() {
+            const userInputs = document.querySelectorAll('.user-input');
+            const userData = [];
+
+            userInputs.forEach(userDiv => {
+                const name = userDiv.querySelector('.user-name-input').value.trim();
+                if (!name) return;
+
+                const sections = {};
+                userDiv.querySelectorAll('.section').forEach(sectionDiv => {
+                    const sectionName = sectionDiv.querySelector('.section-title').value.trim();
+                    if (!sectionName) return;
+
+                    const bulletPoints = [];
+                    sectionDiv.querySelectorAll('.bullet-input').forEach(input => {
+                        const point = input.value.trim();
+                        if (point) bulletPoints.push(point);
+                    });
+
+                    if (bulletPoints.length > 0) {
+                        sections[sectionName] = bulletPoints;
+                    }
+                });
+
+                if (Object.keys(sections).length > 0) {
+                    userData.push({ name, sections });
                 }
             });
 
-            if (userNotes.length === 0) {
+            return userData;
+        }
+
+        function analyzeNotes() {
+            const userData = collectUserData();
+
+            if (userData.length === 0) {
                 alert('Please add at least one user with notes before analyzing.');
                 return;
             }
 
-            const insights = analyzer.extractInsights(userNotes);
-            displayResults(insights, userNotes.length);
+            const insights = analyzer.extractInsightsBySection(userData);
+            displayResults(insights, userData.length);
         }
 
-        function displayResults(insights, totalUsers) {
+        function displayResults(sectionInsights, totalUsers) {
             const resultsDiv = document.getElementById('results');
             
-            if (insights.length === 0) {
+            const totalInsights = Object.values(sectionInsights).reduce((sum, insights) => sum + insights.length, 0);
+            
+            if (totalInsights === 0) {
                 resultsDiv.innerHTML = '<div class="no-results">No significant patterns found in the provided notes.</div>';
                 return;
             }
@@ -437,88 +745,110 @@
                         <div class="stat-label">Total Users</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">${insights.length}</div>
-                        <div class="stat-label">Insights Found</div>
+                        <div class="stat-number">${Object.keys(sectionInsights).length}</div>
+                        <div class="stat-label">Sections Analyzed</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">${insights.filter(i => i.confidence === 'high').length}</div>
-                        <div class="stat-label">High Confidence</div>
+                        <div class="stat-number">${totalInsights}</div>
+                        <div class="stat-label">Total Insights</div>
                     </div>
                 </div>
+
+                <div class="insights-by-section">
             `;
 
-            insights.forEach(insight => {
-                const confidenceClass = `insight-${insight.confidence}`;
-                const badgeClass = `confidence-${insight.confidence}`;
-                
-                html += `
-                    <div class="insight ${confidenceClass}">
-                        <div class="confidence-badge ${badgeClass}">
-                            ${insight.userCount}/${totalUsers} users
+            Object.keys(sectionInsights).forEach(sectionName => {
+                const insights = sectionInsights[sectionName];
+                if (insights.length === 0) return;
+
+                html += `<div class="section-insights">
+                    <h3>📋 ${sectionName}</h3>`;
+
+                insights.forEach(insight => {
+                    const confidenceClass = `insight-${insight.confidence}`;
+                    const badgeClass = `confidence-${insight.confidence}`;
+                    
+                    const examples = insight.examples.slice(0, 3).map(ex => 
+                        `<div><strong>${ex.user}:</strong> "${ex.quote}"</div>`
+                    ).join('');
+
+                    html += `
+                        <div class="insight ${confidenceClass}">
+                            <div class="confidence-badge ${badgeClass}">
+                                ${insight.userCount}/${totalUsers} users
+                            </div>
+                            <div class="insight-text">${insight.text}</div>
+                            <div class="insight-users">
+                                Mentioned by: ${insight.users.join(', ')}
+                            </div>
+                            <div class="insight-examples">
+                                <strong>Examples:</strong><br>
+                                ${examples}
+                            </div>
                         </div>
-                        <div class="insight-text">${insight.text}</div>
-                        <div class="insight-users">
-                            Mentioned by: ${insight.users.join(', ')}
-                        </div>
-                    </div>
-                `;
+                    `;
+                });
+
+                html += '</div>';
             });
 
+            html += '</div>';
             resultsDiv.innerHTML = html;
         }
 
         function clearAll() {
-            document.getElementById('userInputs').innerHTML = `
-                <div class="user-input">
-                    <label>User Name:</label>
-                    <input type="text" class="user-name" placeholder="Enter user name">
-                    <label>Notes:</label>
-                    <textarea class="user-notes" placeholder="Enter user feedback, observations, or comments..."></textarea>
-                </div>
-            `;
-            
+            document.getElementById('userInputs').innerHTML = '';
             document.getElementById('results').innerHTML = `
                 <div class="no-results">
-                    Add user notes above and click "Analyze Insights" to see patterns and findings.
+                    Add user notes above and click "Analyze Insights" to see patterns and findings organized by section.
                 </div>
             `;
+            userCounter = 0;
         }
 
-        // Add some sample data for demonstration
-        function loadSampleData() {
-            const sampleData = [
-                {
-                    name: "Sarah",
-                    notes: "The search feature is really helpful and easy to use. I love how fast it loads results. The dashboard design is clean and intuitive."
-                },
-                {
-                    name: "Mike", 
-                    notes: "Search functionality works well for me too. The interface is user-friendly. However, the mobile version is a bit slow sometimes."
-                },
-                {
-                    name: "Jessica",
-                    notes: "I find the navigation confusing at first, but the search tool is excellent. The reporting feature is very useful for my work."
-                }
-            ];
-
-            const container = document.getElementById('userInputs');
-            container.innerHTML = '';
-            
-            sampleData.forEach(user => {
-                const newInput = document.createElement('div');
-                newInput.className = 'user-input';
-                newInput.innerHTML = `
-                    <label>User Name:</label>
-                    <input type="text" class="user-name" value="${user.name}">
-                    <label>Notes:</label>
-                    <textarea class="user-notes">${user.notes}</textarea>
-                `;
-                container.appendChild(newInput);
-            });
+        // Template functions
+        function loadUXTemplate() {
+            clearAll();
+            const template = {
+                'Pain Points': [''],
+                'What Works Well': [''],
+                'Feature Requests': [''],
+                'Usability Issues': ['']
+            };
+            addUser(template);
         }
 
-        // Uncomment the line below to load sample data on page load
-        // loadSampleData();
+        function loadInterviewTemplate() {
+            clearAll();
+            const template = {
+                'Goals & Motivations': [''],
+                'Current Process': [''],
+                'Frustrations': [''],
+                'Ideal Solution': ['']
+            };
+            addUser(template);
+        }
+
+        function loadFeedbackTemplate() {
+            clearAll();
+            const template = {
+                'Likes': [''],
+                'Dislikes': [''],
+                'Suggestions': [''],
+                'Overall Experience': ['']
+            };
+            addUser(template);
+        }
+
+        function loadCustomTemplate() {
+            clearAll();
+            addUser();
+        }
+
+        // Initialize with one user
+        window.onload = function() {
+            addUser();
+        };
     </script>
 </body>
 </html>
